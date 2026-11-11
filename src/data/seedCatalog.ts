@@ -1,4 +1,4 @@
-import type { CatalogState, Company, Generic, MedicineBrand, ProductUpdateLog } from '../types/pharma';
+import type { CatalogState, Company, Generic, MedicineBrand, ProductUpdateLog } from '../types/pharma.js';
 
 export const SEED_COMPANIES: Company[] = [
   {

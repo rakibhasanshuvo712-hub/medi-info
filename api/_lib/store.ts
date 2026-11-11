@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createInitialCatalog } from '../../src/data/seedCatalog';
-import { applyCompanyFeedItems } from '../../src/lib/catalogEngine';
-import type { CatalogState, FeedProductItem } from '../../src/types/pharma';
+import { createInitialCatalog } from '../../src/data/seedCatalog.js';
+import { applyCompanyFeedItems } from '../../src/lib/catalogEngine.js';
+import type { CatalogState, FeedProductItem } from '../../src/types/pharma.js';
 
 const TMP_DIR = '/tmp/medpulse-data';
 const CATALOG_FILE = path.join(TMP_DIR, 'catalog.json');

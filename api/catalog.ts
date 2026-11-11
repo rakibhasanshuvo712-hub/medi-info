@@ -1,14 +1,14 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { createInitialCatalog } from '../src/data/seedCatalog';
+import { createInitialCatalog } from '../src/data/seedCatalog.js';
 import {
   applyCompanyFeedItems,
   registerCompanyInCatalog,
   upsertBrandInCatalog,
   type RegisterCompanyInput,
   type UpsertBrandInput,
-} from '../src/lib/catalogEngine';
-import type { FeedProductItem } from '../src/types/pharma';
-import { loadCatalog, saveCatalog } from './_lib/store';
+} from '../src/lib/catalogEngine.js';
+import type { FeedProductItem } from '../src/types/pharma.js';
+import { loadCatalog, saveCatalog } from './_lib/store.js';
 
 type CatalogActionPayload =
   | { action: 'upsert-brand'; data: UpsertBrandInput }

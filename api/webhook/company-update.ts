@@ -3,9 +3,9 @@ import {
   applyCompanyFeedItems,
   upsertBrandInCatalog,
   type UpsertBrandInput,
-} from '../../src/lib/catalogEngine';
-import type { FeedProductItem } from '../../src/types/pharma';
-import { loadCatalog, saveCatalog } from '../_lib/store';
+} from '../../src/lib/catalogEngine.js';
+import type { FeedProductItem } from '../../src/types/pharma.js';
+import { loadCatalog, saveCatalog } from '../_lib/store.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {

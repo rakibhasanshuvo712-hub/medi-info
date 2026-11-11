@@ -8,7 +8,7 @@ import type {
   ProductStatus,
   ProductUpdateLog,
   UpdateSource,
-} from '../types/pharma';
+} from '../types/pharma.js';
 
 function slugify(value: string): string {
   return value

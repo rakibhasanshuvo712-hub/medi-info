@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import type { FeedProductItem } from '../../src/types/pharma';
-import { loadCatalog, loadFeeds, saveFeeds } from '../_lib/store';
+import type { FeedProductItem } from '../../src/types/pharma.js';
+import { loadCatalog, loadFeeds, saveFeeds } from '../_lib/store.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const rawId = req.query.companyId;
