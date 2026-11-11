@@ -148,7 +148,7 @@ export function Navbar({
               <strong className="text-white">{formatRelativeTime(catalog.lastUpdatedAt)}</strong>
             </span>
             <span className="rounded bg-teal-900/90 px-1.5 py-0.5 font-mono text-[10px] text-teal-200">
-              {apiMode === 'live-api' ? 'Cloud Blobs API' : 'Local Preview Sync'}
+              {apiMode === 'live-api' ? 'Live Cloud API' : 'Local Preview Sync'}
             </span>
           </div>
 
