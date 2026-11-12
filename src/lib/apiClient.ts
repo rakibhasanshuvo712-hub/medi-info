@@ -8,7 +8,7 @@ import {
   type UpsertBrandInput,
 } from './catalogEngine';
 
-const LOCAL_STORAGE_KEY = 'medpulse_local_catalog_v1';
+const LOCAL_STORAGE_KEY = 'medpulse_local_catalog_v2';
 
 function readLocalCatalog(): CatalogState {
   try {

@@ -73,6 +73,7 @@ export function App() {
   const [brandCompanyFilter, setBrandCompanyFilter] = useState<string>('ALL');
   const [brandStatusFilter, setBrandStatusFilter] = useState<ProductStatus | 'ALL'>('ALL');
   const [brandSearch, setBrandSearch] = useState('');
+  const [brandLimit, setBrandLimit] = useState(60);
   const [genericSearch, setGenericSearch] = useState('');
   const [therapeuticFilter, setTherapeuticFilter] = useState('ALL');
   const [companySearch, setCompanySearch] = useState('');
@@ -905,8 +906,9 @@ export function App() {
                     No medicine brands match your current filters.
                   </div>
                 ) : (
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {filteredBrands.map((b) => {
+                  <>
+                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {filteredBrands.slice(0, brandLimit).map((b) => {
                       const g = genericMap.get(b.genericId);
                       const c = companyMap.get(b.companyId);
                       return (
@@ -957,6 +959,18 @@ export function App() {
                       );
                     })}
                   </div>
+                  {filteredBrands.length > brandLimit && (
+                    <div className="flex justify-center pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setBrandLimit((prev) => prev + 60)}
+                        className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-teal-600 hover:text-teal-700"
+                      >
+                        Load More Brands ({filteredBrands.length - brandLimit} remaining)
+                      </button>
+                    </div>
+                  )}
+                  </>
                 )}
               </div>
             )}
