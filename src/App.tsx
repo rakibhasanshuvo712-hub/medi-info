@@ -18,6 +18,7 @@ import { CompanyPage } from './components/CompanyPage';
 import { CompanyPortal } from './components/CompanyPortal';
 import { DosageIcon } from './components/DosageIcon';
 import { GenericPage } from './components/GenericPage';
+import { InteractionChecker } from './components/InteractionChecker';
 import { Navbar, type NavTab } from './components/Navbar';
 import { createInitialCatalog } from './data/seedCatalog';
 import {
@@ -119,7 +120,7 @@ export function App() {
         setDetailView({ kind: 'company', id: hash.slice(8) });
         setActiveTab('companies');
       } else if (
-        ['brands', 'generics', 'companies', 'therapeutic', 'updates', 'portal'].includes(hash)
+        ['brands', 'generics', 'companies', 'therapeutic', 'interactions', 'updates', 'portal'].includes(hash)
       ) {
         setDetailView(null);
         setActiveTab(hash as NavTab);
@@ -540,6 +541,34 @@ export function App() {
                           className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 transition hover:border-teal-600 hover:text-teal-700"
                         >
                           {term}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5">
+                      <span className="text-[11px] font-medium text-slate-400">
+                        By Indication:
+                      </span>
+                      {[
+                        { label: 'Fever & Pain', q: 'fever' },
+                        { label: 'Acidity / GERD', q: 'GERD' },
+                        { label: 'Allergy', q: 'allergic' },
+                        { label: 'Antibiotic', q: 'pneumonia' },
+                        { label: 'Diabetes', q: 'diabetes' },
+                        { label: 'Hypertension', q: 'hypertension' },
+                        { label: 'Asthma', q: 'asthma' },
+                      ].map((ind) => (
+                        <button
+                          key={ind.label}
+                          type="button"
+                          onClick={() => {
+                            setGenericSearch(ind.q);
+                            setTherapeuticFilter('ALL');
+                            navigateTab('generics');
+                          }}
+                          className="rounded-md bg-teal-50 px-2.5 py-0.5 text-[11px] font-semibold text-teal-800 transition hover:bg-teal-100"
+                        >
+                          {ind.label}
                         </button>
                       ))}
                     </div>
@@ -1115,6 +1144,8 @@ export function App() {
                 </div>
               </div>
             )}
+
+            {activeTab === 'interactions' && <InteractionChecker catalog={catalog} />}
 
             {activeTab === 'updates' && (
               <div className="space-y-5">

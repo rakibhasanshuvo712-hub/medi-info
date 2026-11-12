@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import {
   ArrowLeft,
   Building2,
+  Check,
   CheckCircle2,
   ChevronRight,
   Clock,
+  Copy,
   FlaskConical,
   Layers,
+  Printer,
 } from 'lucide-react';
 import type { CatalogState, Company, Generic, MedicineBrand } from '../types/pharma';
 import {
@@ -32,6 +36,9 @@ export function BrandPage({
   onSelectGeneric,
   onSelectCompany,
 }: BrandPageProps) {
+  const [qty, setQty] = useState(10);
+  const [copied, setCopied] = useState(false);
+
   const generic = catalog.generics.find((g) => g.id === brand.genericId);
   const company = catalog.companies.find((c) => c.id === brand.companyId);
 
@@ -96,14 +103,36 @@ export function BrandPage({
           </span>
         </div>
 
-        <button
-          type="button"
-          onClick={onBack}
-          className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700 hover:bg-slate-50"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          Back to Directory
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              void navigator.clipboard?.writeText(window.location.href);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700 hover:bg-slate-50"
+          >
+            {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? 'Copied' : 'Share'}
+          </button>
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700 hover:bg-slate-50"
+          >
+            <Printer className="h-3.5 w-3.5" />
+            Print
+          </button>
+          <button
+            type="button"
+            onClick={onBack}
+            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700 hover:bg-slate-50"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Back
+          </button>
+        </div>
       </div>
 
       {/* MedEx-Style Main Brand Header Card */}
@@ -208,7 +237,23 @@ export function BrandPage({
             </div>
 
             <div className="border-t border-teal-200/60 pt-2 text-xs text-slate-600">
-              <div className="flex justify-between">
+              <div className="flex items-center justify-between gap-2">
+                <span>Course / Qty Cost:</span>
+                <div className="flex items-center gap-1.5">
+                  <input
+                    type="number"
+                    min={1}
+                    max={999}
+                    value={qty}
+                    onChange={(e) => setQty(Math.max(1, Number(e.target.value) || 1))}
+                    className="w-14 rounded border border-teal-300 bg-white px-1.5 py-0.5 text-center font-mono text-xs font-semibold text-slate-900"
+                  />
+                  <strong className="font-mono text-teal-800">
+                    {formatBDT(brand.unitPrice * qty)}
+                  </strong>
+                </div>
+              </div>
+              <div className="mt-1.5 flex justify-between">
                 <span>Pack ({brand.packSize}):</span>
                 <strong className="font-mono text-slate-900">{formatBDT(brand.packPrice)}</strong>
               </div>

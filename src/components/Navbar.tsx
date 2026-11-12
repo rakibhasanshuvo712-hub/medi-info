@@ -19,6 +19,7 @@ export type NavTab =
   | 'generics'
   | 'companies'
   | 'therapeutic'
+  | 'interactions'
   | 'updates'
   | 'portal';
 
@@ -130,6 +131,7 @@ export function Navbar({
     { id: 'generics', label: 'Generics', badge: catalog.generics.length },
     { id: 'companies', label: 'Pharmaceuticals', badge: catalog.companies.length },
     { id: 'therapeutic', label: 'Drug Classes' },
+    { id: 'interactions', label: 'Interaction Checker' },
     { id: 'updates', label: 'Live Updates', badge: catalog.updates.length },
     { id: 'portal', label: 'Company Portal' },
   ];
