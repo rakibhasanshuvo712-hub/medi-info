@@ -34,6 +34,8 @@ export interface Generic {
   sideEffects: string;
   interactions: string;
   pregnancyCategory: string;
+  precautions?: string;
+  overdose?: string;
   storage: string;
 }
 

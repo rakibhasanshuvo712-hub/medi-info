@@ -3,7 +3,6 @@ import {
   Activity,
   Building2,
   FlaskConical,
-  Pill,
   RefreshCw,
   Search,
   Sparkles,
@@ -12,12 +11,14 @@ import {
 } from 'lucide-react';
 import type { CatalogState, Company, Generic, MedicineBrand } from '../types/pharma';
 import { formatBDT, formatRelativeTime } from '../lib/formatters';
+import { DosageIcon } from './DosageIcon';
 
 export type NavTab =
   | 'home'
   | 'brands'
   | 'generics'
   | 'companies'
+  | 'therapeutic'
   | 'updates'
   | 'portal';
 
@@ -124,10 +125,11 @@ export function Navbar({
     searchResults.companies.length > 0;
 
   const navItems: { id: NavTab; label: string; badge?: number }[] = [
-    { id: 'home', label: 'Overview' },
+    { id: 'home', label: 'Home' },
     { id: 'brands', label: 'Brands', badge: catalog.brands.length },
     { id: 'generics', label: 'Generics', badge: catalog.generics.length },
-    { id: 'companies', label: 'Companies', badge: catalog.companies.length },
+    { id: 'companies', label: 'Pharmaceuticals', badge: catalog.companies.length },
+    { id: 'therapeutic', label: 'Drug Classes' },
     { id: 'updates', label: 'Live Updates', badge: catalog.updates.length },
     { id: 'portal', label: 'Company Portal' },
   ];
@@ -270,7 +272,7 @@ export function Navbar({
                               className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left transition hover:bg-teal-50/70"
                             >
                               <div className="flex items-center gap-2.5">
-                                <Pill className="h-4 w-4 shrink-0 text-teal-600" />
+                                <DosageIcon form={b.dosageForm} className="h-4 w-4 shrink-0" />
                                 <div>
                                   <div className="text-sm font-semibold text-slate-900">
                                     {b.brandName}{' '}
