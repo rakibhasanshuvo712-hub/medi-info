@@ -1,5 +1,6 @@
 import type { CatalogState, Company, Generic, MedicineBrand, ProductUpdateLog } from '../types/pharma.js';
 import { EXTRA_BRANDS, EXTRA_COMPANIES, EXTRA_GENERICS } from './expandedCatalog.js';
+import { EXTRA_BRANDS_2, EXTRA_COMPANIES_2, EXTRA_GENERICS_2 } from './expandedCatalog2.js';
 
 export const SEED_COMPANIES: Company[] = [
   {
@@ -1377,11 +1378,11 @@ export const SEED_UPDATES: ProductUpdateLog[] = [
 
 export function createInitialCatalog(): CatalogState {
   return {
-    version: 2,
-    lastUpdatedAt: '2026-11-12T03:45:00Z',
-    companies: [...SEED_COMPANIES, ...EXTRA_COMPANIES],
-    generics: [...SEED_GENERICS, ...EXTRA_GENERICS],
-    brands: [...SEED_BRANDS, ...EXTRA_BRANDS],
+    version: 3,
+    lastUpdatedAt: '2026-11-12T04:10:00Z',
+    companies: [...SEED_COMPANIES, ...EXTRA_COMPANIES, ...EXTRA_COMPANIES_2],
+    generics: [...SEED_GENERICS, ...EXTRA_GENERICS, ...EXTRA_GENERICS_2],
+    brands: [...SEED_BRANDS, ...EXTRA_BRANDS, ...EXTRA_BRANDS_2],
     updates: SEED_UPDATES,
   };
 }
